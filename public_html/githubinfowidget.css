@@ -78,7 +78,25 @@ p.githubinfowidget-reponame {
    margin-bottom:5px;
 }
 
-p.githubinfowidget-repodescription {
+a.githubinfowidget-reponame:link {
+    color:white;
+}
+
+a.githubinfowidget-reponame:visited {
+    color:white;
+}
+
+a.githubinfowidget-reponame:hover {
+    color:white;
+       font-size:  105%;
+}
+
+
+p.githubinfowidget-repodescription{
     font-size: 60%;
     margin-top: 0px;
+    color:white;
+    font-style: italic;
 }
+
+

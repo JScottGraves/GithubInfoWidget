@@ -55,7 +55,7 @@
            $("#giw_logo").attr("href",data.html_url);
            $.get(data.repos_url,function(repos){
               for(i = 0;i < repos.length;i++){
-                    $('<p class="githubinfowidget-reponame">' + repos[i].name + '</p>').appendTo("#giw_container");
+                    $('<p class="githubinfowidget-reponame"><a class="githubinfowidget-reponame" href="' + repos[i].html_url + '">' + repos[i].name + '</a></p>').appendTo("#giw_container");
                     $('<p class="githubinfowidget-repodescription">' + repos[i].description + '</p>').appendTo("#giw_container");
                     $('<hr>').appendTo("#giw_container");                  
                }
