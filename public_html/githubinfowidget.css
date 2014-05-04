@@ -29,6 +29,7 @@ div.githubinfowidget {
     border-radius: 5px;
     width: 400px;
     padding: 10px;
+    overflow: hidden;
 }
 
 div.githubinfowidget-avatar {
@@ -39,6 +40,11 @@ div.githubinfowidget-avatar {
 
 div.githubinfowidget-container {
     margin-top: 10px;
+}
+
+div.githubinfowidget-repocontainer {
+    overflow: auto;
+    height: 95%;
 }
 
 span.githubinfowidget-title {
@@ -88,13 +94,17 @@ a.githubinfowidget-reponame:visited {
 
 a.githubinfowidget-reponame:hover {
     color:white;
-       font-size:  105%;
+    font-size:  105%;
 }
-
 
 p.githubinfowidget-repodescription{
     font-size: 60%;
     margin-top: 0px;
+    color:white;
+    font-style: italic;
+}
+
+a.githubinfowidget-repodescription{
     color:white;
     font-style: italic;
 }

@@ -37,13 +37,14 @@
         
        this.addClass("githubinfowidget");
        $('<div class="githubinfowidget-logodiv"><a id="giw_logo" class="githubinfowidget-logo"></a></div>').appendTo(this);
-       $("#giw_logo").css("background-image","url('github-widgetlogo.png')");
+       $("#giw_logo").css("background-image","url('" + settings.iconurl +"')");
        $('<span class="githubinfowidget-title">GitHub</span>').appendTo(this);
        $('<div style="width:100%;">&nbsp<div>').appendTo(this);
        $('<hr>').appendTo(this);
 
        $('<div id="giw_container" class="githubinfowidget-container"></div>').appendTo(this);
-
+       $('<div id="giw_repocontainer" class="githubinfowidget-repocontainer"></div>').appendTo(this);
+    
        //so I can access "this" in the .get closure
        var targetelement = this;
        
@@ -53,14 +54,19 @@
            $('<p class="githubinfowidget-basicstats">repos: ' + data.public_repos + ' | followers: ' + data.followers + '</p>').appendTo("#giw_container");
            $('<hr>').appendTo("#giw_container");
            $("#giw_logo").attr("href",data.html_url);
+           var pos = $("#giw_repocontainer").position();
+           $("#giw_repocontainer").css("height",$(targetelement).height() - pos.top - 5);
            $.get(data.repos_url,function(repos){
               for(i = 0;i < repos.length;i++){
-                    $('<p class="githubinfowidget-reponame"><a class="githubinfowidget-reponame" href="' + repos[i].html_url + '">' + repos[i].name + '</a></p>').appendTo("#giw_container");
-                    $('<p class="githubinfowidget-repodescription">' + repos[i].description + '</p>').appendTo("#giw_container");
-                    $('<hr>').appendTo("#giw_container");                  
+                    $('<p class="githubinfowidget-reponame"><a class="githubinfowidget-reponame" href="' + repos[i].html_url + '">' + repos[i].name + '</a></p>').appendTo("#giw_repocontainer");
+                    $('<p class="githubinfowidget-repodescription">' + repos[i].description + '</p>').appendTo("#giw_repocontainer");
+                    $('<hr>').appendTo("#giw_repocontainer");                  
                }
            });
-        });
+        }).fail(function(){
+                $('<p class="githubinfowidget-repodescription">Sorry, we couldn\'t get data from GitHub. Try looking <a class="githubinfowidget-repodescription" href="https://github.com/' + settings.username + '">here</a> for my GitHub page.   </p>').appendTo("#giw_repocontainer");
+                $("#giw_logo").attr("href","https://github.com/" + settings.username);
+           });
        
         
         return this;
